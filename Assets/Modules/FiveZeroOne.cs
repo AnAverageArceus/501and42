@@ -289,11 +289,13 @@ public class FiveZeroOne : MonoBehaviour
 
     IEnumerator INeedThisToSpaceOutSoundsOnWarioware()
     {
+        Debug.LogFormat("<501 #{0}> Started Speedup Coroutine", moduleId);
         NoHolding = true;
         HoldLength = 19;
         yield return new WaitForSeconds(1.7f);
         if (Stage % 10 == 0 && Stage <= 100)
         {
+            Debug.LogFormat("<501 #{0}> Speedup Reached, Executing", moduleId);
             BruhSFX2.PlayOneShot(Faster);
             Speed++;
             yield return new WaitForSeconds(0.6f);
@@ -309,6 +311,7 @@ public class FiveZeroOne : MonoBehaviour
         }
         int index = RDM.Range(0, 2);
         BruhSFX2.PlayOneShot(Begin[index]);
+        Debug.LogFormat("<501 #{0}> Speedup Coroutine Checkpoint", moduleId);
         BigText.characterSize = 1f;
         BigText.text = (Stage - 1).ToString();
         BigText.color = RandomColors[RDM.Range(0, 6)];
@@ -317,6 +320,7 @@ public class FiveZeroOne : MonoBehaviour
         yield return new WaitForSeconds(1.2f);
         BigText.text = "";
         NoHolding = false;
+        Debug.LogFormat("<501 #{0}> Speedup Coroutine Ended", moduleId);
     }
 
     IEnumerator WowYouSolvedIt()
@@ -529,6 +533,7 @@ public class FiveZeroOne : MonoBehaviour
 
         if (HoldLength == 60 - (3*Speed)) //This is all me being really really bad at coding efficiently :P
         {
+            Debug.LogFormat("<501 #{0}> Cycle 1", moduleId);
             SafeRelease = false;
             Solveable = false;
             BigText.text = NumberCycle1.ToString();
@@ -551,6 +556,7 @@ public class FiveZeroOne : MonoBehaviour
         }
         else if (HoldLength == 105 - (6*Speed))
         {
+            Debug.LogFormat("<501 #{0}> Cycle 2", moduleId);
             Solveable = false;
             BigText.text = NumberCycle2.ToString();
             CurrentNumber = 2;
@@ -572,6 +578,7 @@ public class FiveZeroOne : MonoBehaviour
         }
         else if (HoldLength == 150 - (9*Speed))
         {
+            Debug.LogFormat("<501 #{0}> Cycle 3", moduleId);
             Solveable = false;
             BigText.text = NumberCycle3.ToString();
             CurrentNumber = 3;
@@ -593,6 +600,7 @@ public class FiveZeroOne : MonoBehaviour
         }
         else if (HoldLength == 195 - (12*Speed))
         {
+            Debug.LogFormat("<501 #{0}> Cycle 4", moduleId);
             Solveable = false;
             BigText.text = NumberCycle4.ToString();
             CurrentNumber = 4;
@@ -614,6 +622,7 @@ public class FiveZeroOne : MonoBehaviour
         }
         else if (HoldLength == 240 - (15*Speed))
         {
+            Debug.LogFormat("<501 #{0}> Cycle 5", moduleId);
             Solveable = false;
             BigText.text = NumberCycle5.ToString();
             CurrentNumber = 5;
@@ -635,6 +644,7 @@ public class FiveZeroOne : MonoBehaviour
         }
         else if (HoldLength == 285 - (18*Speed))
         {
+            Debug.LogFormat("<501 #{0}> Cycle 6", moduleId);
             Solveable = false;
             BigText.text = NumberCycle6.ToString();
             CurrentNumber = 6;
@@ -656,6 +666,7 @@ public class FiveZeroOne : MonoBehaviour
         }
         else if (HoldLength == 330 - (21*Speed))
         {
+            Debug.LogFormat("<501 #{0}> Cycle 7", moduleId);
             Solveable = false;
             BigText.text = NumberCycle7.ToString();
             CurrentNumber = 7;
@@ -677,6 +688,7 @@ public class FiveZeroOne : MonoBehaviour
         }
         else if (HoldLength == 375 - (24*Speed))
         {
+            Debug.LogFormat("<501 #{0}> Cycle 8", moduleId);
             Solveable = false;
             BigText.text = NumberCycle8.ToString();
             CurrentNumber = 8;
@@ -698,6 +710,7 @@ public class FiveZeroOne : MonoBehaviour
         }
         else if (HoldLength == 420 - (27*Speed))
         {
+            Debug.LogFormat("<501 #{0}> Cycle 9", moduleId);
             Solveable = false;
             BigText.text = NumberCycle9.ToString();
             CurrentNumber = 9;
@@ -719,6 +732,7 @@ public class FiveZeroOne : MonoBehaviour
         }
         else if (HoldLength == 465 - (30*Speed))
         {
+            Debug.LogFormat("<501 #{0}> Cycle 10", moduleId);
             Solveable = false;
             BigText.text = NumberCycle10.ToString();
             CurrentNumber = 10;
@@ -740,6 +754,7 @@ public class FiveZeroOne : MonoBehaviour
         }
         else if (HoldLength == 510 - (33*Speed))
         {
+            Debug.LogFormat("<501 #{0}> Cycle 11", moduleId);
             BruhSFX2.clip = SoundEffex[2];
             CurrentNumber = 11;
             BruhSFX2.Play(); BigText.text = "";
@@ -833,9 +848,8 @@ public class FiveZeroOne : MonoBehaviour
         ushort s;
         return ushort.TryParse(par, out s) && s < 12;
     }
-    IEnumerator TwitchHandleForcedSolve()
+    void TwitchHandleForcedSolve()
     {
-        yield return null;
         Module.HandlePass();
         StartCoroutine(WowYouSolvedIt());
         Debug.LogFormat("[501 #{0}] Autosolve command received.", moduleId);
